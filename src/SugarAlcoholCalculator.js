@@ -14,7 +14,7 @@ function SugarAlcoholCalculator() {
         <h1>Alcohol-Sugar Calculator</h1>
       </header>
       <body>
-        <p>This is where the app goes</p>
+        <p>Alcohol intake converted to relative sugar quantity</p>
         {'Units: '}
         <input
           name='units'
@@ -23,8 +23,7 @@ function SugarAlcoholCalculator() {
           value={unit}
           defaultValue='0'
         />
-        <p>{gramsPerUnit} grams of sugar</p>
-        <p>{(gramsPerUnit / 1000).toFixed(2)}kg of sugar</p>
+        <p>{(gramsPerUnit > 1000) ? (gramsPerUnit / 1000).toFixed(2) + 'kg of sugar' : gramsPerUnit + ' grams of sugar'}</p>
         <p>{Math.floor((gramsPerUnit) / 3)} cubes of sugar</p>
         <p>{Math.floor((gramsPerUnit) / 51.67 * 100)}% RDA for sugar</p>
         <p>{(gramsPerUnit / 26.05).toFixed(2)} mars bars</p>
