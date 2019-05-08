@@ -8,6 +8,7 @@ function SugarAlcoholCalculator() {
   })
   const gramsPerUnit = (unit * 61 / 4).toFixed(2)
   const caloriesPerUnit = (unit * 61).toFixed(2)
+  const minsOfFrisbee = (caloriesPerUnit / 61 * 20.06).toFixed(2)
   return (
     <div className="App">
       <header className="App-header">
@@ -27,6 +28,11 @@ function SugarAlcoholCalculator() {
         <p>{Math.floor((gramsPerUnit) / 3)} cubes of sugar</p>
         <p>{Math.floor((gramsPerUnit) / 51.67 * 100)}% RDA for sugar</p>
         <p>{(gramsPerUnit / 26.05).toFixed(2)} mars bars</p>
+        {(minsOfFrisbee > 60)
+          ? (minsOfFrisbee / 60).toFixed(2) + ' hours of frisbee'
+          : minsOfFrisbee + ' minutes of frisbee'
+        }
+        <p>Calories: {caloriesPerUnit}</p>
       </body>
       <footer>
         <p></p>
