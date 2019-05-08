@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function SugarAlcoholCalculator() {
-  const [ unit, setUnit ] = useState(0)
-  const [ selectedUnit, selectUnit ] = useState('unit')
+  const [unit, setUnit] = useState(0)
+  const [selectedUnit, selectUnit] = useState('unit')
   useEffect(() => {
     console.log(unit)
   })
   const gramsPerUnit = (unit * 61 / 4).toFixed(2)
-  const gramsPerOunce =  parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
+  const gramsPerOunce = parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
   const unitTypes = {
     'unit': (unit * 61 / 4).toFixed(2),
     'oz': parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
@@ -30,7 +30,8 @@ function SugarAlcoholCalculator() {
             () => selectUnit(
               (selectedUnit === 'unit')
                 ? 'oz'
-                : 'unit')
+                : 'unit'
+            )
           }
         >
           {(selectedUnit === 'unit')
