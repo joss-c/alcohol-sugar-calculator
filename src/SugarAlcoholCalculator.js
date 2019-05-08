@@ -27,12 +27,13 @@ function SugarAlcoholCalculator() {
         <p>{(gramsPerUnit > 1000) ? (gramsPerUnit / 1000).toFixed(2) + 'kg of sugar' : gramsPerUnit + ' grams of sugar'}</p>
         <p>{Math.floor((gramsPerUnit) / 3)} cubes of sugar</p>
         <p>{Math.floor((gramsPerUnit) / 51.67 * 100)}% RDA for sugar</p>
-        <p>{(gramsPerUnit / 26.05).toFixed(2)} mars bars</p>
+        <p>{(gramsPerUnit / 26.05).toFixed(2)} mars bars (sugar content)</p>
         {(minsOfFrisbee > 60)
           ? (minsOfFrisbee / 60).toFixed(2) + ' hours of frisbee'
           : minsOfFrisbee + ' minutes of frisbee'
         }
-        <p>Calories: {caloriesPerUnit}</p>
+        <p>Calories: {Math.floor(caloriesPerUnit)}</p>
+        <p>{(Math.floor(caloriesPerUnit) / 2000 * 100).toFixed(2)}% RDA of calories (2000/kcal)</p>
       </body>
       <footer>
         <p></p>
