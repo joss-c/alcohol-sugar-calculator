@@ -58,7 +58,6 @@ function SugarAlcoholCalculator() {
         <p>Calories: {Math.floor(checkIfOz(caloriesPerUnit))}</p>
         <p>{Math.floor(checkIfOz(caloriesPerUnit / 2000 * 100))}% RDA of calories (2000/kcal)</p>
         <p>ml: {checkIfOz(mlPerUnit)}</p>
-        <p>ml to oz: {(Number.isInteger(mlPerUnit * 0.03519503)) ? mlToOz : parseFloat(mlToOz).toFixed(2)}</p>
       </body>
       <footer>
         <p></p>
