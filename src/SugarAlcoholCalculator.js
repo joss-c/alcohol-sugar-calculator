@@ -17,6 +17,7 @@ function SugarAlcoholCalculator() {
   const minsOfFrisbee = (caloriesPerUnit / 61 * 20.06).toFixed(2)
   const mlPerUnit = (unit * 25).toFixed(2)
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(4)
+  const checkIfOz = (input) => (selectedUnit === 'unit' ? input : input * 1.2)
   return (
     <div className="App">
       <header className="App-header">
@@ -35,7 +36,7 @@ function SugarAlcoholCalculator() {
           }
         >
           {(selectedUnit === 'unit')
-            ? 'Units (25ml): '
+            ? 'Units: '
             : 'Ounces: '
           }
         </span>
@@ -46,17 +47,17 @@ function SugarAlcoholCalculator() {
           value={unit}
           defaultValue='0'
         />
-        <p>{(unitTypes[selectedUnit] > 1000) ? (unitTypes[selectedUnit] / 1000).toFixed(2) + 'kg of sugar' : unitTypes[selectedUnit] + ' grams of sugar'}</p>
+        <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) + 'kg of sugar' : checkIfOz(gramsPerUnit) + ' grams of sugar'}</p>
         <p>{Math.floor((unitTypes[selectedUnit]) / 3)} cubes of sugar</p>
         <p>{Math.floor((unitTypes[selectedUnit]) / 51.67 * 100)}% RDA for sugar</p>
         <p>{(unitTypes[selectedUnit] / 26.05).toFixed(1)} mars bars (sugar content)</p>
         {(minsOfFrisbee > 60)
-          ? (minsOfFrisbee / 60).toFixed(1) + ' hours of frisbee'
-          : minsOfFrisbee + ' minutes of frisbee'
+          ? checkIfOz((minsOfFrisbee / 60)).toFixed(1) + ' hours of frisbee'
+          : checkIfOz(minsOfFrisbee) + ' minutes of frisbee'
         }
-        <p>Calories: {Math.floor(caloriesPerUnit)}</p>
-        <p>{(Math.floor(caloriesPerUnit) / 2000 * 100).toFixed(2)}% RDA of calories (2000/kcal)</p>
-        <p>ml: {mlPerUnit}</p>
+        <p>Calories: {Math.floor(checkIfOz(caloriesPerUnit))}</p>
+        <p>{Math.floor(checkIfOz(caloriesPerUnit / 2000 * 100))}% RDA of calories (2000/kcal)</p>
+        <p>ml: {checkIfOz(mlPerUnit)}</p>
         <p>ml to oz: {(Number.isInteger(mlPerUnit * 0.03519503)) ? mlToOz : parseFloat(mlToOz).toFixed(2)}</p>
       </body>
       <footer>
