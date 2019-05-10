@@ -27,18 +27,9 @@ function SugarAlcoholCalculator() {
         <p>Alcohol intake converted to relative sugar quantity</p>
         <span
           style={{ cursor: 'pointer' }}
-          onClick={
-            () => selectUnit(
-              (selectedUnit === 'unit')
-                ? 'oz'
-                : 'unit'
-            )
-          }
+          onClick={() => selectUnit((selectedUnit === 'unit') ? 'oz' : 'unit')}
         >
-          {(selectedUnit === 'unit')
-            ? 'Units: '
-            : 'Ounces: '
-          }
+          {(selectedUnit === 'unit') ? 'Units: ' : 'Ounces: '}
         </span>
         <input
           name='units'
@@ -63,7 +54,7 @@ function SugarAlcoholCalculator() {
         <p></p>
       </footer>
     </div>
-  );
+  )
 }
 
 export default SugarAlcoholCalculator;
