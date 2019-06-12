@@ -8,14 +8,14 @@ function SugarAlcoholCalculator() {
   useEffect(() => {
     console.log(unit)
   })
-  const gramsPerUnit = (unit * 61 / 4).toFixed(2)
+  const gramsPerUnit = (unit * 54 / 4).toFixed(2)
   const gramsPerOunce = parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
   const unitTypes = {
-    'unit': (unit * 61 / 4).toFixed(2),
+    'unit': gramsPerUnit,
     'oz': parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
   }
-  const caloriesPerUnit = (unit * 61).toFixed(2)
-  const minsOfFrisbee = (caloriesPerUnit / 61 * 20.06).toFixed(2)
+  const caloriesPerUnit = (unit * 54).toFixed(2)
+  const minsOfFrisbee = (caloriesPerUnit / 54 * 20.06).toFixed(2)
   const mlPerUnit = (unit * 25).toFixed(2)
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(4)
   const checkIfOz = (input) => (selectedUnit === 'unit' ? input * 1 : input * 1.2)
@@ -43,7 +43,7 @@ function SugarAlcoholCalculator() {
           <option value='wine'>Wine</option>
         </select>
         <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) + 'kg of sugar' : checkIfOz(gramsPerUnit) + ' grams of sugar'}</p>
-        <p>{Math.floor((unitTypes[selectedUnit]) / 3)} cubes of sugar</p>
+        <p>{((unitTypes[selectedUnit]) / 3).toFixed(1)} cubes of sugar</p>
         <p>{Math.floor((unitTypes[selectedUnit]) / 51.67 * 100)}% RDA for sugar</p>
         <p>{(unitTypes[selectedUnit] / 26.05).toFixed(1)} mars bars (sugar content)</p>
         {(minsOfFrisbee > 60)
