@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function SugarAlcoholCalculator() {
-  const [unit, setUnit] = useState(0)
-  const [selectedUnit, selectUnit] = useState('unit')
+  const [ unit, setUnit ] = useState(0)
+  const [ selectedUnit, selectUnit ] = useState('unit')
+  const [ drink, setDrink ] = useState('spirit')
   useEffect(() => {
     console.log(unit)
   })
@@ -17,7 +18,7 @@ function SugarAlcoholCalculator() {
   const minsOfFrisbee = (caloriesPerUnit / 61 * 20.06).toFixed(2)
   const mlPerUnit = (unit * 25).toFixed(2)
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(4)
-  const checkIfOz = (input) => (selectedUnit === 'unit' ? input : input * 1.2)
+  const checkIfOz = (input) => (selectedUnit === 'unit' ? input * 1 : input * 1.2)
   return (
     <div className="App">
       <header className="App-header">
@@ -25,12 +26,10 @@ function SugarAlcoholCalculator() {
       </header>
       <body>
         <p>Alcohol intake converted to relative sugar quantity</p>
-        <span
-          style={{ cursor: 'pointer' }}
-          onClick={() => selectUnit((selectedUnit === 'unit') ? 'oz' : 'unit')}
-        >
-          {(selectedUnit === 'unit') ? 'Units: ' : 'Ounces: '}
-        </span>
+        <select value={selectedUnit} onChange={(event) => selectUnit(event.target.value)}>
+          <option value='unit'>Units</option>
+          <option value='oz'>Ounces</option>
+        </select>
         <input
           name='units'
           type='number'
@@ -38,6 +37,11 @@ function SugarAlcoholCalculator() {
           value={unit}
           defaultValue='0'
         />
+        <select value={drink} onChange={(event) => setDrink(event.target.value)}>
+          <option value='spirit'>Spirit</option>
+          <option value='beer'>Beer</option>
+          <option value='wine'>Wine</option>
+        </select>
         <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) + 'kg of sugar' : checkIfOz(gramsPerUnit) + ' grams of sugar'}</p>
         <p>{Math.floor((unitTypes[selectedUnit]) / 3)} cubes of sugar</p>
         <p>{Math.floor((unitTypes[selectedUnit]) / 51.67 * 100)}% RDA for sugar</p>
