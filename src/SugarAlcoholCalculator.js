@@ -5,17 +5,24 @@ function SugarAlcoholCalculator() {
   const [ unit, setUnit ] = useState(0)
   const [ selectedUnit, selectUnit ] = useState('unit')
   const [ drink, setDrink ] = useState('spirit')
+
   useEffect(() => {
     console.log(unit)
   })
-  const gramsPerUnit = (unit * 54 / 4).toFixed(2)
-  const gramsPerOunce = parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
+
+  const drinkTypes = {
+    'spirit': 1,
+    'beer': 1.6
+  }
+  const caloriesOneUnit = 54 * drinkTypes[drink]
+  const gramsPerUnit = (unit * caloriesOneUnit / 4).toFixed(2)
   const unitTypes = {
     'unit': gramsPerUnit,
     'oz': parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
   }
-  const caloriesPerUnit = (unit * 54).toFixed(2)
-  const minsOfFrisbee = (caloriesPerUnit / 54 * 20.06).toFixed(2)
+  const gramsPerOunce = parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
+  const caloriesPerUnit = (unit * caloriesOneUnit).toFixed(2)
+  const minsOfFrisbee = (caloriesPerUnit / caloriesOneUnit * 20.06).toFixed(2)
   const mlPerUnit = (unit * 25).toFixed(2)
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(4)
   const checkIfOz = (input) => (selectedUnit === 'unit' ? input * 1 : input * 1.2)
