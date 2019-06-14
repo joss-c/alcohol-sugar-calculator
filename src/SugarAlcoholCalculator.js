@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Input } from 'reactstrap'
 import './App.css';
 
 function SugarAlcoholCalculator() {
-  const [ unit, setUnit ] = useState(0)
-  const [ selectedUnit, selectUnit ] = useState('unit')
-  const [ drink, setDrink ] = useState('spirit')
+  const [unit, setUnit] = useState(0)
+  const [selectedUnit, selectUnit] = useState('unit')
+  const [drink, setDrink] = useState('spirit')
 
   useEffect(() => {
     console.log(unit)
@@ -27,45 +28,77 @@ function SugarAlcoholCalculator() {
   const mlPerUnit = (unit * 25).toFixed(2)
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(4)
   const checkIfOz = (input) => (selectedUnit === 'unit' ? input * 1 : input * 1.2)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Alcohol-Sugar Calculator</h1>
-      </header>
-      <body>
-        <p>Alcohol intake converted to relative sugar quantity</p>
-        <select value={selectedUnit} onChange={(event) => selectUnit(event.target.value)}>
-          <option value='unit'>Units</option>
-          <option value='oz'>Ounces</option>
-        </select>
-        <input
-          name='units'
-          type='number'
-          onChange={(event) => setUnit(event.target.value)}
-          value={unit}
-          defaultValue='0'
-        />
-        <select value={drink} onChange={(event) => setDrink(event.target.value)}>
-          <option value='spirit'>Spirit</option>
-          <option value='beer'>Beer</option>
-          <option value='wine'>Wine</option>
-        </select>
-        <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) + 'kg of sugar' : checkIfOz(gramsPerUnit) + ' grams of sugar'}</p>
-        <p>{((unitTypes[selectedUnit]) / 3).toFixed(1)} cubes of sugar</p>
-        <p>{Math.floor((unitTypes[selectedUnit]) / 51.67 * 100)}% RDA for sugar</p>
-        <p>{(unitTypes[selectedUnit] / 26.05).toFixed(1)} mars bars (sugar content)</p>
-        {(minsOfWalking > 60)
-          ? checkIfOz((minsOfWalking / 60)).toFixed(1) + ' hours of walking'
-          : checkIfOz(minsOfWalking) + ' minutes of walking'
-        }
-        <p>Calories: {Math.floor(checkIfOz(caloriesPerUnit))}</p>
-        <p>{Math.floor(checkIfOz(caloriesPerUnit / 2000 * 100))}% RDA of calories (2000/kcal)</p>
-        <p>ml: {checkIfOz(mlPerUnit)}</p>
-      </body>
-      <footer>
-        <p></p>
-      </footer>
-    </div>
+    <Container>
+      <Row>
+        <Col sm='10' md='7' lg='5' xl='5' style={{ margin: 'auto' }} >
+          <Row style={{ backgroundColor: '#282c34' }}>
+            <Col>
+              <header className="App-header">
+                <h1>Alcohol-Sugar Calculator</h1>
+              </header>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Row>
+                <Col style={{ padding: '1rem' }}>
+                  Alcohol intake converted to relative sugar quantity
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Input
+                    name='units'
+                    type='number'
+                    onChange={(event) => setUnit(event.target.value)}
+                    value={unit}
+                    min='0'
+                    defaultValue='0'
+                  />
+                </Col>
+                <Col>
+                  <Input type='select' value={selectedUnit} onChange={(event) => selectUnit(event.target.value)}>
+                    <option value='unit'>Units</option>
+                    {(drink === 'spirit') && <option value='oz'>Ounces</option>}
+                  </Input>
+                </Col>
+                <Col>
+                  <Input type='select' value={drink} onChange={(event) => setDrink(event.target.value)}>
+                    <option value='spirit'>Spirit</option>
+                    <option value='beer'>Beer</option>
+                    <option value='wine'>Wine</option>
+                  </Input>
+                </Col>
+              </Row>
+              <Row>
+                <Col style={{ padding: '1rem 0.25rem 0.25rem 1.5rem' }}>
+                  <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) + 'kg of sugar' : checkIfOz(gramsPerUnit) + ' grams of sugar'}</p>
+                  <p>{((unitTypes[selectedUnit]) / 3).toFixed(1)} cubes of sugar</p>
+                  <p>{Math.floor((unitTypes[selectedUnit]) / 51.67 * 100)}% RDA for sugar</p>
+                  <p>{(unitTypes[selectedUnit] / 26.05).toFixed(1)} mars bars (sugar content)</p>
+                  <p>
+                    {(minsOfWalking > 60)
+                      ? checkIfOz((minsOfWalking / 60)).toFixed(1) + ' hours of walking'
+                      : checkIfOz(minsOfWalking) + ' minutes of walking'
+                    }
+                  </p>
+                  <p>Calories: {Math.floor(checkIfOz(caloriesPerUnit))}</p>
+                  <p>{Math.floor(checkIfOz(caloriesPerUnit / 2000 * 100))}% RDA of calories (2000/kcal)</p>
+                  <p>ml: {checkIfOz(mlPerUnit)}</p>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <footer>
+              <p></p>
+            </footer>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
