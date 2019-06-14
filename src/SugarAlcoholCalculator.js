@@ -25,8 +25,8 @@ function SugarAlcoholCalculator() {
   const caloriesPerUnit = (unit * caloriesOneUnit).toFixed(2)
   const minsOfFrisbee = ((unit * drinkTypes[drink]) * 20.06).toFixed(2)
   const minsOfWalking = Math.floor(caloriesPerUnit * 0.278)
-  const mlPerUnit = (unit * 25).toFixed(2)
-  const mlToOz = (mlPerUnit * 0.03519503).toFixed(4)
+  const mlPerUnit = ((unit * 25) * ((drink === 'beer') ? 8 : 1)).toFixed(2)
+  const mlToOz = (mlPerUnit * 0.03519503).toFixed(2)
   const checkIfOz = (input) => (selectedUnit === 'unit' ? input * 1 : input * 1.2)
 
   return (
@@ -47,8 +47,8 @@ function SugarAlcoholCalculator() {
                   Alcohol intake converted to relative sugar quantity
                 </Col>
               </Row>
-              <Row>
-                <Col>
+              <Row className='no-gutters'>
+                <Col style={{ paddingRight: '0.5rem', maxWidth: '5rem' }}>
                   <Input
                     name='units'
                     type='number'
@@ -58,7 +58,7 @@ function SugarAlcoholCalculator() {
                     defaultValue='0'
                   />
                 </Col>
-                <Col>
+                <Col style={{ paddingRight: '0.5rem', maxWidth: '7rem' }}>
                   <Input type='select' value={selectedUnit} onChange={(event) => selectUnit(event.target.value)}>
                     <option value='unit'>Units</option>
                     {(drink === 'spirit') && <option value='oz'>Ounces</option>}
@@ -66,9 +66,9 @@ function SugarAlcoholCalculator() {
                 </Col>
                 <Col>
                   <Input type='select' value={drink} onChange={(event) => setDrink(event.target.value)}>
-                    <option value='spirit'>Spirit</option>
-                    <option value='beer'>Beer</option>
-                    <option value='wine'>Wine</option>
+                    <option value='spirit'>Spirit (40% ABV)</option>
+                    <option value='beer'>Beer (5% ABV)</option>
+                    {/* <option value='wine'>Wine</option> */}
                   </Input>
                 </Col>
               </Row>
@@ -87,6 +87,7 @@ function SugarAlcoholCalculator() {
                   <p>Calories: {Math.floor(checkIfOz(caloriesPerUnit))}</p>
                   <p>{Math.floor(checkIfOz(caloriesPerUnit / 2000 * 100))}% RDA of calories (2000/kcal)</p>
                   <p>ml: {checkIfOz(mlPerUnit)}</p>
+                  {(selectedUnit === 'unit') && <p>Ounces: {mlToOz}</p>}
                 </Col>
               </Row>
             </Col>
