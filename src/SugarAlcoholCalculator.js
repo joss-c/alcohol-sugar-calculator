@@ -36,8 +36,7 @@ function SugarAlcoholCalculator() {
   const minsOfWalking = Math.floor(caloriesPerUnit * 0.278)
   const mlPerUnit = ((unit * 25) * ((drink === 'beer') ? 8 : 1)).toFixed(2)
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(2)
-  const checkIfOz = (input) => (selectedUnit === 'unit' ? input * 1 : input * 1.2)
-
+  const checkIfOz = (input) => (selectedUnit === 'unit' ? input * 1 : (input * 1.136524).toFixed(2) * 1)
   return (
     <Layout>
       <Row style={{ backgroundColor: '#282c34' }}>
