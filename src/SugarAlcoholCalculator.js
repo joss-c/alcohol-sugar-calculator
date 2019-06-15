@@ -85,7 +85,7 @@ function SugarAlcoholCalculator() {
           <p>{(unitTypes[selectedUnit] / 26.05).toFixed(1) * 1} mars bars (sugar content)</p>
           <p>
             {(minsOfWalking > 60)
-              ? checkIfOz((minsOfWalking / 60)).toFixed(1) + ' hours of walking'
+              ? checkIfOz((minsOfWalking / 60)).toFixed(1) * 1 + ' hours of walking'
               : checkIfOz(minsOfWalking) + ' minutes of walking'
             }
           </p>
