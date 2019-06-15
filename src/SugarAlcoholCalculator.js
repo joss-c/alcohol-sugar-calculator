@@ -48,55 +48,51 @@ function SugarAlcoholCalculator() {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <Row>
-            <Col style={{ padding: '1rem' }}>
-              Alcohol intake converted to relative sugar quantity
+        <Col style={{ padding: '1rem' }}>
+          Alcohol intake converted to relative sugar quantity
                 </Col>
-          </Row>
-          <Row className='no-gutters'>
-            <Col style={{ paddingRight: '0.5rem', maxWidth: '5rem' }}>
-              <Input
-                name='units'
-                type='number'
-                onChange={(event) => setUnit(event.target.value)}
-                value={unit}
-                min='0'
-                defaultValue='0'
-              />
-            </Col>
-            <Col style={{ paddingRight: '0.5rem', maxWidth: '7rem' }}>
-              <Input type='select' value={selectedUnit} onChange={(event) => selectUnit(event.target.value)}>
-                <option value='unit'>Units</option>
-                {(drink === 'spirit') && <option value='oz'>Ounces</option>}
-              </Input>
-            </Col>
-            <Col>
-              <Input type='select' value={drink} onChange={(event) => setDrink(event.target.value)}>
-                <option value='spirit'>Spirit (40% ABV)</option>
-                <option value='beer'>Beer (5% ABV)</option>
-                {/* <option value='wine'>Wine</option> */}
-              </Input>
-            </Col>
-          </Row>
-          <Row>
-            <Col style={{ padding: '1rem 0.25rem 0.25rem 1.5rem' }}>
-              <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) + 'kg of sugar' : checkIfOz(gramsPerUnit).toFixed(1) + ' grams of sugar'}</p>
-              <p>{((unitTypes[selectedUnit]) / 3).toFixed(1)} cubes of sugar</p>
-              <p>{Math.floor((unitTypes[selectedUnit]) / 51.67 * 100)}% RDA for sugar</p>
-              <p>{(unitTypes[selectedUnit] / 26.05).toFixed(1)} mars bars (sugar content)</p>
-              <p>
-                {(minsOfWalking > 60)
-                  ? checkIfOz((minsOfWalking / 60)).toFixed(1) + ' hours of walking'
-                  : checkIfOz(minsOfWalking) + ' minutes of walking'
-                }
-              </p>
-              <p>Calories: {Math.floor(checkIfOz(caloriesPerUnit))}</p>
-              <p>{Math.floor(checkIfOz(caloriesPerUnit / 2000 * 100))}% RDA of calories (2000/kcal)</p>
-              <p>ml: {checkIfOz(mlPerUnit)}</p>
-              {(selectedUnit === 'unit') && <p>Ounces: {mlToOz}</p>}
-            </Col>
-          </Row>
+      </Row>
+      <Row className='no-gutters'>
+        <Col style={{ paddingRight: '0.5rem', maxWidth: '5rem' }}>
+          <Input
+            name='units'
+            type='number'
+            onChange={(event) => setUnit(event.target.value)}
+            value={unit}
+            min='0'
+            defaultValue='0'
+          />
+        </Col>
+        <Col style={{ paddingRight: '0.5rem', maxWidth: '7rem' }}>
+          <Input type='select' value={selectedUnit} onChange={(event) => selectUnit(event.target.value)}>
+            <option value='unit'>Units</option>
+            {(drink === 'spirit') && <option value='oz'>Ounces</option>}
+          </Input>
+        </Col>
+        <Col>
+          <Input type='select' value={drink} onChange={(event) => setDrink(event.target.value)}>
+            <option value='spirit'>Spirit (40% ABV)</option>
+            <option value='beer'>Beer (5% ABV)</option>
+            {/* <option value='wine'>Wine</option> */}
+          </Input>
+        </Col>
+      </Row>
+      <Row>
+        <Col style={{ padding: '1rem 0.25rem 0.25rem 1.5rem' }}>
+          <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) * 1 + 'kg of sugar' : checkIfOz(gramsPerUnit).toFixed(1) * 1 + ' grams of sugar'}</p>
+          <p>{((unitTypes[selectedUnit]) / 3).toFixed(1) * 1} cubes of sugar</p>
+          <p>{Math.floor((unitTypes[selectedUnit]) / 51.67 * 100)}% RDA for sugar</p>
+          <p>{(unitTypes[selectedUnit] / 26.05).toFixed(1) * 1} mars bars (sugar content)</p>
+          <p>
+            {(minsOfWalking > 60)
+              ? checkIfOz((minsOfWalking / 60)).toFixed(1) + ' hours of walking'
+              : checkIfOz(minsOfWalking) + ' minutes of walking'
+            }
+          </p>
+          <p>Calories: {Math.floor(checkIfOz(caloriesPerUnit))}</p>
+          <p>{Math.floor(checkIfOz(caloriesPerUnit / 2000 * 100))}% RDA of calories (2000/kcal)</p>
+          <p>ml: {checkIfOz(mlPerUnit)}</p>
+          {(selectedUnit === 'unit') && <p>Ounces: {mlToOz * 1}</p>}
         </Col>
       </Row>
       <Row>
