@@ -49,7 +49,7 @@ function SugarAlcoholCalculator() {
       <Row>
         <Col style={{ padding: '1rem' }}>
           Alcohol intake converted to relative sugar quantity
-                </Col>
+        </Col>
       </Row>
       <Row className='no-gutters'>
         <Col style={{ paddingRight: '0.5rem', maxWidth: '5rem' }}>
