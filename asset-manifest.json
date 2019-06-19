@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/alcohol-sugar-calculator/static/css/main.8eb92fd0.chunk.css",
-    "main.js": "/alcohol-sugar-calculator/static/js/main.070d2bc3.chunk.js",
-    "main.js.map": "/alcohol-sugar-calculator/static/js/main.070d2bc3.chunk.js.map",
+    "main.js": "/alcohol-sugar-calculator/static/js/main.b0b31fbc.chunk.js",
+    "main.js.map": "/alcohol-sugar-calculator/static/js/main.b0b31fbc.chunk.js.map",
     "runtime~main.js": "/alcohol-sugar-calculator/static/js/runtime~main.56414c12.js",
     "runtime~main.js.map": "/alcohol-sugar-calculator/static/js/runtime~main.56414c12.js.map",
     "static/css/2.266e55a5.chunk.css": "/alcohol-sugar-calculator/static/css/2.266e55a5.chunk.css",
     "static/js/2.a0acb93a.chunk.js": "/alcohol-sugar-calculator/static/js/2.a0acb93a.chunk.js",
     "static/js/2.a0acb93a.chunk.js.map": "/alcohol-sugar-calculator/static/js/2.a0acb93a.chunk.js.map",
     "index.html": "/alcohol-sugar-calculator/index.html",
-    "precache-manifest.b876da4d4a622fd2d2a7f1aeb25ae4a3.js": "/alcohol-sugar-calculator/precache-manifest.b876da4d4a622fd2d2a7f1aeb25ae4a3.js",
+    "precache-manifest.0bb205c001ab7f428f1d4663e6d1ca34.js": "/alcohol-sugar-calculator/precache-manifest.0bb205c001ab7f428f1d4663e6d1ca34.js",
     "service-worker.js": "/alcohol-sugar-calculator/service-worker.js",
     "static/css/2.266e55a5.chunk.css.map": "/alcohol-sugar-calculator/static/css/2.266e55a5.chunk.css.map",
     "static/css/main.8eb92fd0.chunk.css.map": "/alcohol-sugar-calculator/static/css/main.8eb92fd0.chunk.css.map"
