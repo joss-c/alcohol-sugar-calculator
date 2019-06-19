@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/alcohol-sugar-calculator/precache-manifest.9ca44faef32f8a09764defaa9c45fbf1.js"
+  "/alcohol-sugar-calculator/precache-manifest.b876da4d4a622fd2d2a7f1aeb25ae4a3.js"
 );
 
 self.addEventListener('message', (event) => {
