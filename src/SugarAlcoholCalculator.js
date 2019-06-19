@@ -45,8 +45,10 @@ function SugarAlcoholCalculator() {
   const marsBars = (gramsPerUnit / 26.05).toFixed(1) * 1
   const minsOfFrisbee = ((quantity * drinkTypes[drink]) * 20.06).toFixed(2)
   const minsOfWalking = Math.floor(caloriesPerUnit * 0.278)
-  const mlPerUnit = ((quantity * 25) * ((drink === 'beer') ? 8 : 1)).toFixed(2)
+  const mlPerUnit = Math.floor(quantity * measurements[unit])
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(2)
+
+  console.log(quantity, unit, drink)
 
   return (
     <Layout>
@@ -82,7 +84,17 @@ function SugarAlcoholCalculator() {
           </Input>
         </Col>
         <Col>
-          <Input type='select' value={drink} onChange={(event) => setDrink(event.target.value)}>
+          <Input
+            type='select'
+            value={drink}
+            onChange={(event) => {
+              setDrink(event.target.value)
+              if (event.target.value === 'beer') {
+                setUnit('pint')
+              } else if (event.target.value === 'spirit') {
+                setUnit('shot')
+              }
+            }}>
             <option value='beer'>Beer (5% ABV)</option>
             <option value='spirit'>Spirit (40% ABV)</option>
             <option value='wine'>Wine (13% ABV)</option>
