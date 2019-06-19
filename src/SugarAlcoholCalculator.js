@@ -41,6 +41,7 @@ function SugarAlcoholCalculator() {
   const gramsPerUnit = (quantity * caloriesOneUnit / 3.87).toFixed(2)
   const gramsPerOunce = parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
   const caloriesPerUnit = (quantity * caloriesOneUnit).toFixed(2) * 1
+  const calories = Math.floor(units * caloriesOneUnit)
   const rdaSugar = Math.floor((gramsPerUnit) / 51.67 * 100)
   const marsBars = (gramsPerUnit / 26.05).toFixed(1) * 1
   const minsOfFrisbee = ((quantity * drinkTypes[drink]) * 20.06).toFixed(2)
@@ -113,8 +114,8 @@ function SugarAlcoholCalculator() {
               : minsOfWalking + ' minutes of walking'
             }
           </p>
-          <p>Calories: {caloriesPerUnit}</p>
-          <p>{Math.floor(caloriesPerUnit / 2000 * 100)}% RDA of calories (2000/kcal)</p>
+          <p>Calories: {calories}</p>
+          <p>{Math.floor(calories / 2000 * 100)}% RDA of calories (2000/kcal)</p>
           <p>ml: {checkIfOz(mlPerUnit)}</p>
           {(unit === 'unit') && <p>Ounces: {mlToOz * 1}</p>}
           <p>Units: {units}</p>
