@@ -22,7 +22,7 @@ function SugarAlcoholCalculator() {
 
   const drinkTypes = {
     'spirit': 1,
-    'beer': 1.6
+    'beer': 1.4
   }
   const measurements = {
     'pint': 568.261,
@@ -38,14 +38,14 @@ function SugarAlcoholCalculator() {
   const units = (quantity * measurements[unit] * unitsPerMl[drink]).toFixed(1) * 1
   console.log("quantity: ", quantity, " measurements: ", measurements[unit], " unitsPerMl: ", checkIfOz(unitsPerMl[drink]))
   const caloriesOneUnit = Math.floor(checkIfOz(54 * drinkTypes[drink]))
-  const gramsPerUnit = (quantity * caloriesOneUnit / 3.87).toFixed(2)
+  const calories = Math.floor(units * caloriesOneUnit)
+  const gramsPerUnit = (calories / 3.87).toFixed(2)
   const gramsPerOunce = parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
   const caloriesPerUnit = (quantity * caloriesOneUnit).toFixed(2) * 1
-  const calories = Math.floor(units * caloriesOneUnit)
   const rdaSugar = Math.floor((gramsPerUnit) / 51.67 * 100)
   const marsBars = (gramsPerUnit / 26.05).toFixed(1) * 1
   const minsOfFrisbee = ((quantity * drinkTypes[drink]) * 20.06).toFixed(2)
-  const minsOfWalking = Math.floor(caloriesPerUnit * 0.278)
+  const minsOfWalking = Math.floor(calories * 0.278)
   const mlPerUnit = Math.floor(quantity * measurements[unit])
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(2)
 
