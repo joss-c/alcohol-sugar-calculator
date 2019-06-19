@@ -26,14 +26,15 @@ function SugarAlcoholCalculator() {
   }
   const measurements = {
     'pint': 568.261,
-    'shot': 25
+    'shot': 25,
+    'unit': 25
   }
   const unitsPerMl = {
     'beer': 0.005,
     'spirit': 0.04
   }
 
-  const checkIfOz = (input) => (unit === 'unit') ? input * 1 : input * 1.136524
+  const checkIfOz = (input) => (unit === 'oz') ? input * 1.136524 : input * 1
   const units = (quantity * measurements[unit] * unitsPerMl[drink]).toFixed(1) * 1
   console.log("quantity: ", quantity, " measurements: ", measurements[unit], " unitsPerMl: ", checkIfOz(unitsPerMl[drink]))
   const caloriesOneUnit = Math.floor(checkIfOz(54 * drinkTypes[drink]))
@@ -77,6 +78,7 @@ function SugarAlcoholCalculator() {
             {(drink === 'beer') && <option value='pint'>Pint (568ml)</option>}
             {(drink === 'spirit') && <option value='shot'>Shot (25ml)</option>}
             {(drink === 'spirit') && <option value='oz'>Ounces</option>}
+            {(drink === 'spirit') && <option value='unit'>Units (UK)</option>}
           </Input>
         </Col>
         <Col>
