@@ -112,6 +112,7 @@ function SugarAlcoholCalculator() {
           <p>{rdaSugar}% RDA for sugar</p>
           <Progress
             value={rdaSugar}
+            style={{ width: '90%' }}
             color={
               (rdaSugar > 75)
                 ? 'danger'
