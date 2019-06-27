@@ -25,14 +25,17 @@ function SugarAlcoholCalculator() {
     { type: 'spirit', label: 'Spirit (40% ABV)', unit: 'shot' },
     { type: 'wine', label: 'Wine (13%)', unit: 'glass' }
   ]
-  const drinkTypes = {
+  const extraCalories = {
     'spirit': 1,
     'beer': 1.36871
   }
   const measurements = {
     'pint': 568.261,
     'shot': 25,
-    'unit': 25
+    'unit': {
+      'beer': 200,
+      'spirit': 25
+    }
   }
   const unitTypes = [
     { type: 'pint', label: 'Pint (568ml)', drinks: 'beer' },
@@ -45,18 +48,19 @@ function SugarAlcoholCalculator() {
   }
 
   const checkIfOz = (input) => (unit === 'oz') ? input * 1.136524 : input * 1
-  const units = (quantity * measurements[unit] * unitsPerMl[drink])
+  const checkIfUnit = (input) => (unit === 'unit') ? measurements.unit[drink] : input
+  const units = (quantity * checkIfUnit(measurements[unit]) * unitsPerMl[drink])
   console.log("quantity: ", quantity, " measurements: ", measurements[unit], " unitsPerMl: ", checkIfOz(unitsPerMl[drink]))
-  const caloriesOneUnit = checkIfOz(54 * drinkTypes[drink])
+  const caloriesOneUnit = checkIfOz(54 * extraCalories[drink])
   const calories = units * caloriesOneUnit
   const gramsPerUnit = calories / 3.87
   // const gramsPerOunce = parseFloat((gramsPerUnit / 100) * 20) + parseFloat(gramsPerUnit)
   // const caloriesPerUnit = (quantity * caloriesOneUnit).toFixed(2) * 1
   const rdaSugar = Math.floor((gramsPerUnit) / 51.67 * 100)
   const marsBars = (gramsPerUnit / 26.05).toFixed(1) * 1
-  // const minsOfFrisbee = ((quantity * drinkTypes[drink]) * 20.06).toFixed(2)
+  // const minsOfFrisbee = ((quantity * extraCalories[drink]) * 20.06).toFixed(2)
   const minsOfWalking = Math.floor(calories * 0.278)
-  const mlPerUnit = Math.floor(quantity * measurements[unit])
+  const mlPerUnit = Math.floor(quantity * checkIfUnit(measurements[unit]))
   const mlToOz = (mlPerUnit * 0.03519503).toFixed(2)
 
   console.log(quantity, unit, drink)
