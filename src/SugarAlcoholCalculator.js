@@ -22,12 +22,12 @@ function SugarAlcoholCalculator() {
 
   const drinks = [
     { type: 'beer', label: 'Beer (5% ABV)', unit: 'pint' },
-    { type: 'spirit', label: 'Spirit (40% ABV)', unit: 'shot' },
-    { type: 'wine', label: 'Wine (13%)', unit: 'glass' }
+    { type: 'wine', label: 'Wine (13%)', unit: 'glass' },
+    { type: 'spirit', label: 'Spirit (40% ABV)', unit: 'shot' }
   ]
   const extraCalories = {
     'beer': 1.36871,
-    'wine': 1.2823,
+    'wine': 1.282258064516129,
     'spirit': 1
   }
   const measurements = {
