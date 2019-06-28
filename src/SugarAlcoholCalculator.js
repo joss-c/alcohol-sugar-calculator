@@ -30,10 +30,12 @@ function SugarAlcoholCalculator() {
     'wine': 1.282258064516129,
     'spirit': 1
   }
+  // Measurements are accepted in millilitres only
   const measurements = {
     'pint': 568.261,
     'glass': 175,
     'shot': 25,
+    'oz': 29.5735,
     'unit': {
       'beer': 200,
       'wine': 76.086,
@@ -41,9 +43,10 @@ function SugarAlcoholCalculator() {
     }
   }
   const unitTypes = [
-    { type: 'pint', label: 'Pint (568ml)', drinks: 'beer' },
-    { type: 'glass', label: 'Glass (175ml)', drinks: 'wine' },
-    { type: 'shot', label: 'Shot (25ml)', drinks: 'spirit' },
+    { type: 'pint', label: 'Pint (568ml)', drinks: 'beer wine spirit' },
+    { type: 'glass', label: 'Glass (175ml)', drinks: 'beer wine spirit' },
+    { type: 'shot', label: 'Shot (25ml)', drinks: 'beer wine spirit' },
+    { type: 'oz', label: 'Ounces (US)', drinks: 'beer wine spirit'},
     { type: 'unit', label: 'Unit (UK)', drinks: 'beer wine spirit' }
   ]
   const unitsPerMl = {
@@ -52,7 +55,8 @@ function SugarAlcoholCalculator() {
     'spirit': 0.04
   }
 
-  const checkIfOz = (input) => (unit === 'oz') ? input * 1.136524 : input * 1
+  // const checkIfOz = (input) => (unit === 'oz') ? input * 1.136524 : input * 1
+  const checkIfOz = input => input
   const checkIfUnit = (input) => (unit === 'unit') ? measurements.unit[drink] : input
   const units = (quantity * checkIfUnit(measurements[unit]) * unitsPerMl[drink])
   console.log(units)
@@ -99,7 +103,7 @@ function SugarAlcoholCalculator() {
         <Col style={{ paddingRight: '0.5rem', maxWidth: '7rem' }}>
           <Input type='select' value={unit} onChange={(event) => setUnit(event.target.value)}>
             {unitTypes.map(unit =>
-              <option hidden={!unit.drinks.includes(drink)} value={unit.type}>{unit.label}</option>
+              <option /* hidden={!unit.drinks.includes(drink)} */ value={unit.type}>{unit.label}</option>
             )}
           </Input>
         </Col>
@@ -109,7 +113,7 @@ function SugarAlcoholCalculator() {
             value={drink}
             onChange={(event) => {
               setDrink(event.target.value)
-              drinks.forEach(drink => (drink.type === event.target.value) && setUnit(drink.unit))
+              // drinks.forEach(drink => (drink.type === event.target.value) && setUnit(drink.unit))
             }}>
               {drinks.map(drink => <option value={drink.type}>{drink.label}</option>)}
           </Input>
