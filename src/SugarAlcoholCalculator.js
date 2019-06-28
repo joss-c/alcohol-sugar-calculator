@@ -26,30 +26,36 @@ function SugarAlcoholCalculator() {
     { type: 'wine', label: 'Wine (13%)', unit: 'glass' }
   ]
   const extraCalories = {
-    'spirit': 1,
-    'beer': 1.36871
+    'beer': 1.36871,
+    'wine': 1.2823,
+    'spirit': 1
   }
   const measurements = {
     'pint': 568.261,
+    'glass': 175,
     'shot': 25,
     'unit': {
       'beer': 200,
+      'wine': 76.086,
       'spirit': 25
     }
   }
   const unitTypes = [
     { type: 'pint', label: 'Pint (568ml)', drinks: 'beer' },
+    { type: 'glass', label: 'Glass (175ml)', drinks: 'wine' },
     { type: 'shot', label: 'Shot (25ml)', drinks: 'spirit' },
     { type: 'unit', label: 'Unit (UK)', drinks: 'beer spirit' }
   ]
   const unitsPerMl = {
     'beer': 0.005,
+    'wine': 0.0131428,
     'spirit': 0.04
   }
 
   const checkIfOz = (input) => (unit === 'oz') ? input * 1.136524 : input * 1
   const checkIfUnit = (input) => (unit === 'unit') ? measurements.unit[drink] : input
   const units = (quantity * checkIfUnit(measurements[unit]) * unitsPerMl[drink])
+  console.log(units)
   console.log("quantity: ", quantity, " measurements: ", measurements[unit], " unitsPerMl: ", checkIfOz(unitsPerMl[drink]))
   const caloriesOneUnit = checkIfOz(54 * extraCalories[drink])
   const calories = units * caloriesOneUnit
