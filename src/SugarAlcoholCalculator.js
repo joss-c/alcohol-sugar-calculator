@@ -44,7 +44,7 @@ function SugarAlcoholCalculator() {
     { type: 'pint', label: 'Pint (568ml)', drinks: 'beer' },
     { type: 'glass', label: 'Glass (175ml)', drinks: 'wine' },
     { type: 'shot', label: 'Shot (25ml)', drinks: 'spirit' },
-    { type: 'unit', label: 'Unit (UK)', drinks: 'beer spirit' }
+    { type: 'unit', label: 'Unit (UK)', drinks: 'beer wine spirit' }
   ]
   const unitsPerMl = {
     'beer': 0.005,
