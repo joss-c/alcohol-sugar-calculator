@@ -128,7 +128,7 @@ function SugarAlcoholCalculator() {
         <Col>
           <Input
             type='number'
-            value={ABV[drink]}
+            value={ABV[drink].toFixed(2)}
             onChange={
               (event) => {
                 const input = event.target.value
