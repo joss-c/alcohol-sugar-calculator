@@ -17,7 +17,7 @@ function SugarAlcoholCalculator() {
   const [drink, setDrink] = useState('beer')
   const [ ABV, setABV ] = useState({
     'beer': 5,
-    'wine': 13.1428,
+    'wine': 13.14, //28
     'spirit': 40
   })
 
@@ -128,11 +128,11 @@ function SugarAlcoholCalculator() {
         <Col>
           <Input
             type='number'
-            value={ABV[drink].toFixed(2)}
+            value={ABV[drink]}
             onChange={
               (event) => {
                 const input = event.target.value
-                const regex = /^\d?(\.?\d{1,2})?$/
+                const regex = /^(\d{1,3})?(\.?\d{1,2})?$/
                 if (regex.test(input)) {
                   setABV({
                     ...ABV,
