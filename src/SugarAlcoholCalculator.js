@@ -15,22 +15,27 @@ function SugarAlcoholCalculator() {
   const [quantity, setQuantity] = useState(0)
   const [unit, setUnit] = useState('pint')
   const [drink, setDrink] = useState('beer')
+  const [ ABV, setABV ] = useState({
+    'beer': 5,
+    'wine': 13.1428,
+    'spirit': 40
+  })
 
   useEffect(() => {
     console.log(quantity)
   })
 
   const drinks = [
-    { type: 'beer', label: 'Beer (5% ABV)', unit: 'pint' },
-    { type: 'wine', label: 'Wine (13%)', unit: 'glass' },
-    { type: 'spirit', label: 'Spirit (40% ABV)', unit: 'shot' }
+    { type: 'beer', label: `Beer (${ABV.beer}% ABV)`, unit: 'pint' },
+    { type: 'wine', label: `Wine (${ABV.wine}%)`, unit: 'glass' },
+    { type: 'spirit', label: `Spirit (${ABV.spirit}% ABV)`, unit: 'shot' }
   ]
   const extraCalories = {
     'beer': 1.36871,
     'wine': 1.282258064516129,
     'spirit': 1
   }
-  // Measurements are accepted in millilitres only
+  // Measurements input as ml value
   const measurements = {
     'pint': 568.261,
     'glass': 175,
@@ -50,17 +55,17 @@ function SugarAlcoholCalculator() {
     { type: 'unit', label: 'Unit (UK)', drinks: 'beer wine spirit' }
   ]
   const unitsPerMl = {
-    'beer': 0.005,
-    'wine': 0.0131428,
-    'spirit': 0.04
+    'beer': 5,
+    'wine': 13.1428,
+    'spirit': 40
   }
 
   // const checkIfOz = (input) => (unit === 'oz') ? input * 1.136524 : input * 1
   const checkIfOz = input => input
   const checkIfUnit = (input) => (unit === 'unit') ? measurements.unit[drink] : input
-  const units = (quantity * checkIfUnit(measurements[unit]) * unitsPerMl[drink])
+  const units = (quantity * checkIfUnit(measurements[unit]) * (ABV[drink] / 1000))
   console.log(units)
-  console.log("quantity: ", quantity, " measurements: ", measurements[unit], " unitsPerMl: ", checkIfOz(unitsPerMl[drink]))
+  console.log("quantity: ", quantity, " measurements: ", measurements[unit], " unitsPerMl: ", checkIfOz(ABV[drink] / 1000))
   const caloriesOneUnit = checkIfOz(54 * extraCalories[drink])
   const calories = units * caloriesOneUnit
   const gramsPerUnit = calories / 3.87
@@ -117,6 +122,26 @@ function SugarAlcoholCalculator() {
             }}>
               {drinks.map(drink => <option value={drink.type}>{drink.label}</option>)}
           </Input>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Input
+            type='number'
+            value={ABV[drink]}
+            onChange={
+              (event) => {
+                const input = event.target.value
+                const regex = /^\d?(\.?\d{1,2})?$/
+                if (regex.test(input)) {
+                  setABV({
+                    ...ABV,
+                    [drink]: event.target.value
+                  })
+                }
+              }
+            }
+          />
         </Col>
       </Row>
       <Row>
