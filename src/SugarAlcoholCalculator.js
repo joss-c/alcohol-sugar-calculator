@@ -127,7 +127,7 @@ function SugarAlcoholCalculator() {
       </Row>
       <Row style={{ marginTop: '0.75rem' }}>
         <Col /* style={{ padding: '1rem 0.25rem 0.25rem 1.5rem' }} */>
-          <Row>
+          <Row className='no-gutters'>
             <Col xs='7'>
               <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) * 1 + 'kg of sugar' : checkIfOz(gramsPerUnit).toFixed(1) * 1 + ' grams of sugar'}</p>
             </Col>
