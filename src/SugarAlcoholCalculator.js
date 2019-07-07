@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Input, Progress } from 'reactstrap'
+import { Container, Row, Col, Input, Progress, Button } from 'reactstrap'
 import './App.css';
 
 const Layout = (props) =>
@@ -15,7 +15,8 @@ function SugarAlcoholCalculator() {
   const [quantity, setQuantity] = useState(0)
   const [unit, setUnit] = useState('pint')
   const [drink, setDrink] = useState('beer')
-  const [ ABV, setABV ] = useState({
+  const [editABV, setEditABV] = useState(true)
+  const [ABV, setABV] = useState({
     'beer': 5,
     'wine': 13.14, //28
     'spirit': 40
@@ -51,7 +52,7 @@ function SugarAlcoholCalculator() {
     { type: 'pint', label: 'Pint (568ml)', drinks: 'beer wine spirit' },
     { type: 'glass', label: 'Glass (175ml)', drinks: 'beer wine spirit' },
     { type: 'shot', label: 'Shot (25ml)', drinks: 'beer wine spirit' },
-    { type: 'oz', label: 'Ounces (US)', drinks: 'beer wine spirit'},
+    { type: 'oz', label: 'Ounces (US)', drinks: 'beer wine spirit' },
     { type: 'unit', label: 'Unit (UK)', drinks: 'beer wine spirit' }
   ]
   const unitsPerMl = {
@@ -95,7 +96,7 @@ function SugarAlcoholCalculator() {
         </Col>
       </Row>
       <Row className='no-gutters'>
-        <Col style={{ paddingRight: '0.5rem', maxWidth: '5rem' }}>
+        <Col xs='3' style={{ paddingRight: '0.5rem' }}>
           <Input
             name='quantity'
             type='number'
@@ -105,14 +106,14 @@ function SugarAlcoholCalculator() {
             defaultValue='0'
           />
         </Col>
-        <Col style={{ paddingRight: '0.5rem', maxWidth: '7rem' }}>
+        <Col xs='4' style={{ paddingRight: '0.5rem' }}>
           <Input type='select' value={unit} onChange={(event) => setUnit(event.target.value)}>
             {unitTypes.map(unit =>
               <option /* hidden={!unit.drinks.includes(drink)} */ value={unit.type}>{unit.label}</option>
             )}
           </Input>
         </Col>
-        <Col>
+        <Col xs='5'>
           <Input
             type='select'
             value={drink}
@@ -120,33 +121,45 @@ function SugarAlcoholCalculator() {
               setDrink(event.target.value)
               // drinks.forEach(drink => (drink.type === event.target.value) && setUnit(drink.unit))
             }}>
-              {drinks.map(drink => <option value={drink.type}>{drink.label}</option>)}
+            {drinks.map(drink => <option value={drink.type}>{drink.label}</option>)}
           </Input>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <Input
-            type='number'
-            value={ABV[drink]}
-            onChange={
-              (event) => {
-                const input = event.target.value
-                const regex = /^(\d{1,3})?(\.?\d{1,2})?$/
-                if (regex.test(input)) {
-                  setABV({
-                    ...ABV,
-                    [drink]: event.target.value
-                  })
+      <Row style={{ marginTop: '0.75rem' }}>
+        <Col /* style={{ padding: '1rem 0.25rem 0.25rem 1.5rem' }} */>
+          <Row>
+            <Col xs='7'>
+              <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) * 1 + 'kg of sugar' : checkIfOz(gramsPerUnit).toFixed(1) * 1 + ' grams of sugar'}</p>
+            </Col>
+            <Col xs='5'>
+              <Button
+                color='primary'
+                hidden={!editABV}
+                onClick={() => setEditABV(!editABV)}
+              >
+                Edit ABV
+              </Button>
+              <Input
+                type='number'
+                value={ABV[drink]}
+                hidden={editABV}
+                style={{ width: '50%', float: 'left', marginRight: '0.2rem' }}
+                onChange={
+                  (event) => {
+                    const input = event.target.value
+                    const regex = /^(\d{1,3})?(\.?\d{1,2})?$/
+                    if (regex.test(input)) {
+                      setABV({
+                        ...ABV,
+                        [drink]: event.target.value
+                      })
+                    }
+                  }
                 }
-              }
-            }
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col style={{ padding: '1rem 0.25rem 0.25rem 1.5rem' }}>
-          <p>{(checkIfOz(gramsPerUnit) > 1000) ? checkIfOz(gramsPerUnit / 1000).toFixed(2) * 1 + 'kg of sugar' : checkIfOz(gramsPerUnit).toFixed(1) * 1 + ' grams of sugar'}</p>
+              />
+              <Button hidden={editABV} onClick={() => setEditABV(!editABV)}>OK</Button>
+            </Col>
+          </Row>
           <p>{(checkIfOz(gramsPerUnit) / 3).toFixed(1) * 1} cubes of sugar</p>
           <p>{rdaSugar}% RDA for sugar</p>
           <Progress
