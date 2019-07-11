@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ea93878386091e19b940ae4ac38d7549",
+    "revision": "77edb981efbc6e10b8d4ca12401dcea3",
     "url": "/alcohol-sugar-calculator/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/alcohol-sugar-calculator/static/css/2.266e55a5.chunk.css"
   },
   {
-    "revision": "bf01b1f82e482fa4761c",
+    "revision": "8e67d9bc56c4ea9c69ec",
     "url": "/alcohol-sugar-calculator/static/css/main.8eb92fd0.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/alcohol-sugar-calculator/static/js/2.2bb876af.chunk.js"
   },
   {
-    "revision": "bf01b1f82e482fa4761c",
-    "url": "/alcohol-sugar-calculator/static/js/main.f9978cc6.chunk.js"
+    "revision": "8e67d9bc56c4ea9c69ec",
+    "url": "/alcohol-sugar-calculator/static/js/main.c904d180.chunk.js"
   },
   {
     "revision": "147f126a14ded5f194f9",
