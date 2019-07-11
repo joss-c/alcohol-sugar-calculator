@@ -41,6 +41,7 @@ function SugarAlcoholCalculator() {
     'pint': 568.261,
     'glass': 175,
     'shot': 25,
+    'ml': 1,
     'oz': 29.5735,
     'unit': {
       'beer': 200,
@@ -52,6 +53,7 @@ function SugarAlcoholCalculator() {
     { type: 'pint', label: 'Pint (568ml)', drinks: 'beer wine spirit' },
     { type: 'glass', label: 'Glass (175ml)', drinks: 'beer wine spirit' },
     { type: 'shot', label: 'Shot (25ml)', drinks: 'beer wine spirit' },
+    { type: 'ml', label: 'Milliletres (ml)', drinks: 'beer wine spirit'} ,
     { type: 'oz', label: 'Ounces (US)', drinks: 'beer wine spirit' },
     { type: 'unit', label: 'Unit (UK)', drinks: 'beer wine spirit' }
   ]
