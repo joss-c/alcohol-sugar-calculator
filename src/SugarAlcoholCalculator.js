@@ -18,7 +18,7 @@ function SugarAlcoholCalculator() {
   const [editABV, setEditABV] = useState(true)
   const [ABV, setABV] = useState({
     'beer': 5,
-    'wine': 13.14, //28
+    'wine': 13, //.1428
     'spirit': 40
   })
 
@@ -59,7 +59,7 @@ function SugarAlcoholCalculator() {
   ]
   const unitsPerMl = {
     'beer': 5,
-    'wine': 13.1428,
+    'wine': 13,
     'spirit': 40
   }
 
