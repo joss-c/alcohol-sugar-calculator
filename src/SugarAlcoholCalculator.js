@@ -40,6 +40,7 @@ function SugarAlcoholCalculator() {
   const measurements = {
     'pint': 568.261,
     'glass': 175,
+    'bottle': 750,
     'shot': 25,
     'ml': 1,
     'oz': 29.5735,
@@ -52,6 +53,7 @@ function SugarAlcoholCalculator() {
   const unitTypes = [
     { type: 'pint', label: 'Pint (568ml)', drinks: 'beer wine spirit' },
     { type: 'glass', label: 'Glass (175ml)', drinks: 'beer wine spirit' },
+    { type: 'bottle', label: 'Bottle (750ml)', drinks: 'wine'},
     { type: 'shot', label: 'Shot (25ml)', drinks: 'beer wine spirit' },
     { type: 'ml', label: 'Milliletres (ml)', drinks: 'beer wine spirit'} ,
     { type: 'oz', label: 'Ounces (US)', drinks: 'beer wine spirit' },
